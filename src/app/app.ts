@@ -13,5 +13,4 @@ export class App implements OnInit {
   ngOnInit(): void {
     initFlowbite();
   }
-  protected readonly title = signal('angular-grocery-management-system-v2');
 }
