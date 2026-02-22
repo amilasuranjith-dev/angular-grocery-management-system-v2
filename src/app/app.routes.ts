@@ -8,6 +8,10 @@ import { Home } from './page/dashboard/home/home';
 
 export const routes: Routes = [
     {
+        path: "",
+        component: Login
+    },
+    {
         path: "login",
         component: Login
     },
