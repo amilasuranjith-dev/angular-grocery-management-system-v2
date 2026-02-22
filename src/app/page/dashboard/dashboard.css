@@ -1,0 +1,59 @@
+/* Sidebar enhancements */
+aside ul li a {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+aside ul li a svg {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+aside ul li a:hover svg {
+  transform: scale(1.1);
+}
+
+aside ul li a:hover {
+  transform: translateX(4px);
+}
+
+/* Active state styling */
+aside ul li a.active {
+  background-color: var(--color-brand-soft, #f0e8ff);
+  color: var(--color-brand, #7c3aed);
+}
+
+aside ul li a.active svg {
+  color: var(--color-brand, #7c3aed);
+}
+
+/* Sidebar header styling */
+aside > div > div:first-child {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menu items animation */
+aside ul li {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
