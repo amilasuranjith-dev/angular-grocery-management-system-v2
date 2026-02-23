@@ -41,13 +41,14 @@ export class Customer implements OnInit {
     this.http.get<CustomerModel[]>("http://localhost:8080/customer/getAll").subscribe(data => {
       console.log(data);
       this.customerList = data;
-      this.cdr.detectChanges();
-    })
+      this.cdr.detectChanges();    })
   }
 
   cancel() {
     throw new Error('Method not implemented.');
   }
+
+  
   addCustomer(): void {
     // console.log(this.customerObj);
     this.http.post("http://localhost:8080/customer/add", this.customerObj).subscribe(data => {
@@ -62,5 +63,7 @@ export class Customer implements OnInit {
       this.getAll();
     })
   }
+
+
 
 }

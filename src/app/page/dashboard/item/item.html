@@ -5,37 +5,37 @@
         <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-3">
                 <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
-                <input  type="text" name="id" id="id"
+                <input [(ngModel)]="itemObj.id" type="text" name="id" id="id"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="I001" required="">
             </div>
             <div class="col-span-6 sm:col-span-3">
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <input  type="text" name="description" id="description"
+                <input  [(ngModel)]="itemObj.description" type="text" name="description" id="description"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Description" required="">
             </div>
             <div class="col-span-6 sm:col-span-2">
                 <label for="packSize" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pack Size</label>
-                <input  type="text" name="packSize" id="packSize"
+                <input [(ngModel)]="itemObj.packSize" type="text" name="packSize" id="packSize"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="1kg/500g" required="">
             </div>
             <div class="col-span-6 sm:col-span-2">
                 <label for="unitPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unit Price</label>
-                <input  type="number" name="unitPrice" id="unitPrice"
+                <input [(ngModel)]="itemObj.unitPrice" type="number" name="unitPrice" id="unitPrice"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="0.00" required="">
             </div>
             <div class="col-span-6 sm:col-span-2">
                 <label for="qty" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
-                <input  type="number" name="qty" id="qty"
+                <input [(ngModel)]="itemObj.qty" type="number" name="qty" id="qty"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="0" required="">
             </div>
         </div>
         <div class="items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-700">
-            <button  type="button"
+            <button (click)="addItem()" type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
                 Item</button>
             <button  type="button"
