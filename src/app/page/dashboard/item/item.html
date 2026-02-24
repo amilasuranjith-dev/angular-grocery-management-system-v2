@@ -81,7 +81,7 @@
                     <td class="px-4 py-3">{{item.unitPrice}}</td>
                     <td class="px-4 py-3">{{item.qty}}</td>
                     <td class="px-4 py-3 flex items-center justify-end">
-                        <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                        <button (click)="deleteItem(item.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                         <button class="font-medium text-red-600 dark:text-red-500 hover:underline ml-3">Delete</button>
                     </td>
                 </tr>
