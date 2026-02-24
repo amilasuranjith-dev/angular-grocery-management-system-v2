@@ -16,16 +16,9 @@ import Swal from 'sweetalert2';
 
 //--Customer component 
 export class Customer implements OnInit {
-updateCustomer() {
-throw new Error('Method not implemented.');
-}
-editCustomer(_t99: CustomerModel) {
-throw new Error('Method not implemented.');
-}
-
-
 
   customerList: Array<CustomerModel> = [];
+  isEditMode: boolean = false;
   customerObj: CustomerModel = {
     id: '',
     title: '',
@@ -54,7 +47,7 @@ throw new Error('Method not implemented.');
   }
 
   cancel() {
-    throw new Error('Method not implemented.');
+    this.resetForm();
   }
 
 
@@ -99,7 +92,48 @@ throw new Error('Method not implemented.');
     });
   }
 
-  isEditMode: boolean = false;
+  resetForm() {
+    this.isEditMode = false;
+    this.customerObj = {
+      id: '',
+      title: '',
+      name: '',
+      dob: '',
+      salary: 0.0,
+      address: '',
+      city: '',
+      province: '',
+      postalCode: ''
+    };
+    this.cdr.detectChanges();
+  }
+  editCustomer(customer: CustomerModel) {
+    this.isEditMode = true;
+    this.customerObj = {...customer};
+    //Convert backend Date to YYYY-MM-DD string for HTML date input
+    if (customer.dob) {
+      this.customerObj.dob = new Date(customer.dob).toISOString().split('T')[0];
+    }
+    this.cdr.detectChanges();
+  }
+  updateCustomer() {
+    this.http.put("http://localhost:8080/customer/update", this.customerObj).subscribe(data => {
+      if(data){
+        Swal.fire({
+          title: "Updated!",
+          text: "Customer " + this.customerObj.name + " has been updated.",
+          icon: "success"
+        });
+        this.getAll();
+        this.resetForm();
+      }
+    }, error => {
+      console.error("Update failed", error);
+      Swal.fire("Error", "Could not update customer", "error");
+    });
+  }
+
+
 
 
 }
