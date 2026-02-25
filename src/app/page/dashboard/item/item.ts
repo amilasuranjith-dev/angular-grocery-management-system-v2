@@ -2,19 +2,22 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ItemModel } from '../../model/type';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-item',
-  imports: [FormsModule, NgFor],
+  imports: [FormsModule, NgFor, NgIf],
   templateUrl: './item.html',
   styleUrl: './item.css',
 })
 
+//Item Class
 export class Item implements OnInit {
 
-  itemList: Array<ItemModel> = [];
+  isEditMode: boolean = false;
+
+  itemList: Array<ItemModel> = [];  
 
   itemObj: ItemModel = {
     id: '',
@@ -68,15 +71,52 @@ export class Item implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.http.delete("http://localhost:8080/item/delete-by-id/" + id).subscribe(data => {
-          if (data == true) {
+          if (data === true) {
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Item has been deleted.",
               icon: "success"
             });
+            this.getAll();
           }
         })
       }
     });
+  }
+
+  editItem(item: ItemModel) {
+    this.isEditMode = true;
+    this.itemObj = { ...item };
+    this.cdr.detectChanges();
+  }
+
+  updateItem() {
+    this.http.put('http://localhost:8080/item/update', this.itemObj).subscribe(data => {
+      if (data === true) {
+        Swal.fire({
+          title: 'Updated!',
+          text: this.itemObj.description + ' has been updated.',
+          icon: 'success'
+        });
+        this.resetForm();
+      }
+      this.getAll();
+    });
+  }
+
+  resetForm() {
+    this.isEditMode = false;
+    this.itemObj = {
+      id: '',
+      description: '',
+      packSize: '',
+      unitPrice: 0.0,
+      qty: 0
+    };
+    this.cdr.detectChanges();
+  }
+
+  cancel() {
+    this.resetForm();
   }
 }
