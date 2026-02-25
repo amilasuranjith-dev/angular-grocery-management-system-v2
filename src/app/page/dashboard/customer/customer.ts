@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 
 
-//--Customer component 
+//--Customer Class 
 export class Customer implements OnInit {
 
   customerList: Array<CustomerModel> = [];
